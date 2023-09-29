@@ -3,6 +3,7 @@ import NewsItem from "./NewsItem";
 import { apiData } from "../zsample";
 import Skeleton from "./Skeleton";
 import "./News.css";
+import { environmentVariable } from "../environments/environment";
 
 export default class News extends Component {
   constructor() {
@@ -25,7 +26,7 @@ export default class News extends Component {
       console.log(this.pageNumber);
       console.log("thsui");
       this.setState({ loading: true });
-      let url = `https://newsapi.org/v2/everything?q=india&apiKey=81c9f763fd1a47ca882cc0832ef7949b&page=${
+      let url = `https://newsapi.org/v2/everything?q=india&apiKey=${environmentVariable.apiKeyAj}&page=${
         this.pageNumber ? this.pageNumber : 1
       }&pageSize=6`;
       let res = await fetch(url);
