@@ -66,9 +66,10 @@ export default class News extends Component {
     //     console.log("egeugeigeiu");
     // };
     return (
-      <div className="container" style={{ textAlign: "center" }}>
-        <h1>News Today</h1>
-
+      <div
+        className="container"
+        style={{ textAlign: "center", marginTop: "30px" }}
+      >
         {this.state.loading && <Skeleton />}
 
         {!this.state.loading && (
@@ -87,11 +88,8 @@ export default class News extends Component {
             })}
           </div>
         )}
-        <nav
-          style={{ marginTop: "1rem", marginLeft: "52rem" }}
-          aria-label="Page navigation example"
-        >
-          <ul className="pagination" style={{ marginLeft: "58px" }}>
+        <nav style={{ marginTop: "1rem" }} aria-label="Page navigation example">
+          <ul className="pagination">
             <li className="page-item">
               <div
                 className="page-link"
@@ -114,7 +112,7 @@ export default class News extends Component {
                     className="page-link"
                     style={
                       this.pageNumber === p
-                        ? { backgroundColor: "#212529",color:'#fff' }
+                        ? { backgroundColor: "#212529", color: "#fff" }
                         : {}
                     }
                     onClick={() => this.getNews(p)}
