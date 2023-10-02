@@ -4,8 +4,19 @@ import { apiData } from "../zsample";
 import Skeleton from "./Skeleton";
 import "./News.css";
 import { environmentVariable } from "../environments/environment";
+import PropTypes from "prop-types";
 
 export default class News extends Component {
+  static defaultProps = {
+    country: "in",
+    pageSize: 6,
+    category: "general",
+  };
+  static propTypes = {
+    country: PropTypes.string,
+    pageSize: PropTypes.number,
+    category: PropTypes.string,
+  };
   constructor() {
     super();
     this.state = {
@@ -24,11 +35,15 @@ export default class News extends Component {
       this.pageNumber = page;
       console.log("pagenum");
       console.log(this.pageNumber);
-      console.log("thsui");
+      console.log("this");
       this.setState({ loading: true });
-      let url = `https://newsapi.org/v2/everything?q=india&apiKey=${environmentVariable.apiKeyAj}&page=${
-        this.pageNumber ? this.pageNumber : 1
-      }&pageSize=6`;
+      let url = `https://newsapi.org/v2/top-headlines?country=${
+        this.props.country
+      }
+      &category=${this.props.category}&apiKey=${environmentVariable.apiKeyAj}
+      &page=${this.pageNumber ? this.pageNumber : 1}&pageSize=${
+        this.props.pageSize
+      }`;
       let res = await fetch(url);
       let data = await res.json();
       console.log(data);
